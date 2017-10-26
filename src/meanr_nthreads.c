@@ -1,18 +1,23 @@
-#include "include/RNACI.h"
+#include <RNACI.h>
 
 #ifdef _OPENMP
-int omp_get_num_threads();
+#include <omp.h>
+#endif
 
 static inline int num_threads()
 {
-  int nth = 0;
+  int nth;
   
+#ifdef _OPENMP
   #pragma omp parallel
   nth = omp_get_num_threads();
+#else
+  nth = 1;
+#endif
   
   return nth;
 }
-#endif
+
 
 
 SEXP R_meanr_nthreads()
@@ -20,12 +25,8 @@ SEXP R_meanr_nthreads()
   SEXP nth;
   newRvec(nth, 1, "int");
   
-#ifdef _OPENMP
   INT(nth) = num_threads();
-#else
-  INT(nth) = 1;
-#endif
   
-  R_END;
+  unhideGC();
   return nth;
 }

@@ -3,16 +3,14 @@
 #include <string.h>
 #include <ctype.h> // for ispunct()
 
-#include "include/reactor.h"
-#include "include/RNACI.h"
-#include "include/safeomp.h"
+#include <reactor.h>
+#include <RNACI.h>
+#include <safeomp.h>
 
 #include "hashtable/poshash.h"
 #include "hashtable/neghash.h"
 
 #define THROW_MEMERR() error("unable to allocate memory")
-#define CHECKMALLOC(s) if (s == NULL) THROW_MEMERR()
-
 #define FREE(ptr) if(ptr!=NULL) free(ptr)
 
 
@@ -134,7 +132,7 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
         memcpy(s, in, inlen*sizeof(*s));
         
         SAFE_SIMD
-        for (int j=0; j<inlen; j++)
+        for (size_t j=0; j<inlen; j++)
         {
           if (ispunct(s[j]))
             s[j] = ' ';
@@ -181,13 +179,13 @@ SEXP R_score(SEXP s_, SEXP nthreads_)
     FREE(s);
   }
   
-  // malloc failed
+  // malloc failed - should be outside of parallel region for proper error handling
   if (check)
     THROW_MEMERR();
   
-  ret_names = make_list_names(4, "positive", "negative", "score", "wc");
-  ret = make_dataframe(RNULL, ret_names, 4, positive, negative, scores, nwords);
+  make_list_names(ret_names, 4, "positive", "negative", "score", "wc");
+  make_dataframe(ret, RNULL, ret_names, 4, positive, negative, scores, nwords);
   
-  R_END;
+  unhideGC();
   return ret;
 }
