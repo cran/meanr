@@ -1,14 +1,12 @@
 #' score
 #' 
 #' Computes the sentiment score, the sum of the total number of positive and
-#' negative scored words.  The scorer is vectorized so that it will return one
-#' row per input text, and each 
-#' 
-#' Preprocessing is largely unnecessary.  For example, the scorer ignores
-#' case and punctuation.  That said, preprocessing probably won't hurt.
+#' negative scored words. The function is vectorized so that it will return one
+#' row per string. The scoring function ignores (upper/lower) case and
+#' punctuation.
 #' 
 #' @details
-#' The scorer uses OpenMP
+#' The scoring function uses OpenMP to process text in parallel.
 #' 
 #' The function uses the Hu and Liu sentiment dictionary (same as everybody
 #' else) available here:
@@ -27,7 +25,6 @@
 #' sentiment words, and "wc" is the wordcount (total number of words).
 #' 
 #' @examples
-#' \dontrun{
 #' library(meanr)
 #' s1 = "Abundance abundant accessable."
 #' s2 = "Banana apple orange."
@@ -35,18 +32,18 @@
 #' s = c(s1, s2, s3)
 #' 
 #' # as separate 'documents'
-#' score(s)
+#' score(s, nthreads=1)
 #' 
 #' # as one document
-#' score(paste0(s, collapse=" "))
-#' }
+#' score(paste0(s, collapse=" "), nthreads=1)
 #' 
 #' @references
 #' Hu, M., & Liu, B. (2004). Mining opinion features in customer
 #' reviews. National Conference on Artificial Intelligence.
 #' 
-#' @seealso
-#' \code{\link{meanr.nthreads}}
-#' 
+#' @useDynLib meanr R_score
 #' @export
-score <- function(s, nthreads=meanr.nthreads()) .Call(R_score, s, nthreads)
+score = function(s, nthreads=meanr.nthreads())
+{
+  .Call(R_score, s, nthreads)
+}
