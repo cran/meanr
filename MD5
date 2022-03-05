@@ -1,11 +1,11 @@
-6a2b5487f6a6e91225404a17bdb36862 *ChangeLog
-97bc87f5719de6cd385df13db56b30bb *DESCRIPTION
+8390f514e699b9ec7f9e0f4432ce6ca1 *ChangeLog
+b40c9dd91956138ecddaf99eb057fec6 *DESCRIPTION
 3bb36bae4f20d6d901563bb436fdca76 *LICENSE
 71a59864821bfe266acacf836a65ff17 *NAMESPACE
-1e68875d24679b72224292e7e6ad2aaf *R/meanr-package.r
+7bc09f90774b095c79cc8c2d08b2df82 *R/meanr-package.r
 2d85a96c77521020ae322e8bfccf34f4 *R/meanr.nthreads.r
 7461fcea0078384cf7a8bb0563486c1c *R/score.r
-ff3cbe68cf508ec39a2ff10e5e29ee8c *README.md
+7ccd8be6229194dc8cbc2e71a399fe65 *README.md
 568cc65f24ab8abe07975404b3ce9db5 *cleanup
 b4c71e2ab491a98c8caa51eaf4d80dd7 *configure
 43cfd32acffd207160d9e5f8b85c8590 *configure.ac
@@ -14,7 +14,7 @@ d42b1cf816faa7331fa7dbcbe1226d61 *inst/CITATION
 868c2acd29d90cab7b660bbb962b999e *inst/sexputils/RNACI.h
 531e126d0a1fde18833a3edb18827b67 *inst/sexputils/reactor.h
 714124ba3a51388f100a65c8ed9c4026 *inst/sexputils/safeomp.h
-d38aa8dc386be73bb37dc4f15103c836 *man/meanr-package.Rd
+da1f5da00e3510a964e01e03b94e7cdd *man/meanr-package.Rd
 19445ee5ae3b75e6a5b1ce70f4dc906c *man/meanr.nthreads.Rd
 fc679ec321dffd71ab40d7a4b4c5c646 *man/score.Rd
 8287ca72695a213913079b52402b11ef *src/Makevars.in
